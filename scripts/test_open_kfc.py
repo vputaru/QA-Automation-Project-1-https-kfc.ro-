@@ -3,12 +3,14 @@ Test Case: Verify KFC page title is correct.
 """
 
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 
-driver = webdriver.Chrome()
-driver.get("https://kfc.ro/")
+def test_open_kfc():
+    service = Service()
+    driver = webdriver.Chrome(service=service)
 
-assert "Jumătatea Nepicantă" in driver.title, "Page title does not contain 'Jumătatea Nepicantă'"
+    driver.get("https://kfc.ro")
+    assert "Jumătatea Nepicantă" in driver.title
 
-print("KFC homepage loaded successfully with correct title:", driver.title)
-
-driver.quit()
+    driver.quit()
